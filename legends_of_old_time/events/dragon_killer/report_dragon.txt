@@ -1,0 +1,84 @@
+
+namespace = report_dragon
+
+#####################
+
+## Report & Searching Dragon Events
+
+# 0000 report
+# 0001 searching
+
+# by will
+#####################
+
+
+
+scripted_trigger report_dragon_has_mountains = {
+    # Target is located in an appropriate region & has suitable terrain.
+    OR = {
+        terrain = mountains
+    }
+}
+
+
+# create villagers who report the dragon,and make city be destructed
+report_dragon.0001 = {
+
+    title = report_dragon.0001.t
+    desc = report_dragon.0001.d
+
+    hidden = yes
+    theme = hunt_activity
+	right_portrait = {
+    		character = ROOT
+    		animation = war_attacker
+    }
+
+    trigger = {
+        is_landed = yes
+        # is_in_civil_war = no
+        NOT = { has_character_flag = destroy_by_dragon_modifier }
+    }
+
+    immediate = {
+        random_realm_province = {
+            limit = {
+                report_dragon_has_mountains = yes
+            }
+            alternative_limit = {
+                report_dragon_has_mountains = yes
+            }
+            county = {
+                save_scope_as = develop_county
+            }
+        }
+
+		add_character_flag = {
+			flag = destroy_by_dragon_modifier
+			days = 365
+		}
+
+		scope:develop_county = {
+            add_county_modifier = {
+                modifier = destroy_by_dragon_modifier
+                days = 365
+            }
+        }
+	}
+    #option = { #I'll get right on it!
+    #		name = vassal.2801.a
+    #		#scope:develop_county = {
+    #		#	add_county_modifier = {
+    #		#		modifier = destroy_by_dragon_modifier
+    #		#		days = 365
+    #		#	}
+    #		#}
+    #		stress_impact = {
+    #			ambitious = medium_stress_impact_gain
+    #		}
+    #}
+
+    #option = {
+    #    name = vassal.2801.b
+    #}
+}
