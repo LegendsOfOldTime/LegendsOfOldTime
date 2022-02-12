@@ -1,0 +1,90 @@
+
+namespace = search_dragon
+
+#####################
+
+## Search Dragon Events
+
+# 0000 report and searching
+# 1000 found,plan and fight
+# 2000 go home
+
+# by will
+#####################
+
+
+search_dragon.0001 = {
+	type = character_event
+	title = search_dragon.0001.t
+	desc = search_dragon.0001.d
+
+	theme = hunt_activity
+
+	right_portrait = {
+    		character = ROOT
+    		animation = war_attacker
+    }
+
+    #Risky treatment
+    option = {
+        name = search_dragon.0001.option.deceitful
+        trait = deceitful
+        trigger = {
+        			has_trait = deceitful
+        		}
+    }
+
+    option = { #Finish them!!
+    		name = search_dragon.0001.option.wrathful
+    		trigger = {
+    			OR = {
+    				has_trait = wrathful
+    			}
+    		}
+    		trait = wrathful
+
+    }
+
+    option = { #Finish them!!
+    		name = search_dragon.0001.option.sadistic
+    		trigger = {
+    			OR = {
+    				has_trait = sadistic
+    				has_trait = ambitious
+    			}
+    		}
+    		trait = sadistic
+    		trait = ambitious
+
+    }
+
+    option = { #Finish them!!
+            name = search_dragon.0001.option.brave
+            trigger = {
+                has_trait = brave
+
+            }
+            trait = brave
+
+    }
+
+    option = {
+        name = search_dragon.0001.option.ambitious
+        trigger = {
+                    has_trait = ambitious
+
+                }
+        trait = ambitious
+    }
+
+    #No treatment
+    option = {
+            name = search_dragon.0001.option.calm
+            trigger = {
+                 has_trait = calm
+
+            }
+            trait = calm
+    }
+}
+

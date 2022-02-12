@@ -1,0 +1,12 @@
+﻿
+## utf-8-bom
+l_simp_chinese:
+  search_dragon.0001.t:0 "发现洞口"
+  search_dragon.0001.d:0 "尽管从远处看这片山脉毫无异常，但仔细的搜索还是得到了回报。洞口边倾倒的树木证明了这个庞然大物的存在。危害国家的巨兽应该就在洞内。"
+
+  search_dragon.0001.option.deceitful:0 "呃，或许，这可能是给你们扬名立万的机会"
+  search_dragon.0001.option.wrathful:0 "嘿，直接冲进去"
+  search_dragon.0001.option.sadistic:0 "你们进去吧"
+  search_dragon.0001.option.brave:0 "进入洞穴"
+  search_dragon.0001.option.ambitious:0 "哦我们还是回去吧"
+  search_dragon.0001.option.calm:0 "仔细观察周围"
