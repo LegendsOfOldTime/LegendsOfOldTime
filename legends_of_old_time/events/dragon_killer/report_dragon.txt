@@ -90,14 +90,40 @@ report_dragon.0001 = {
         }
 	}
     option = {
+        name = report_dragon.0001.option.deceitful
+        trigger = {
+            OR = {
+                # fickle or deceitful or paranoid
+                has_trait = fickle
+                has_trait = deceitful
+                has_trait = paranoid
+            }
+        }
+        has_trait = fickle
+        has_trait = deceitful
+        has_trait = paranoid
+    }
+
+    option = {
+        name = report_dragon.0001.option.sadistic
+        trigger = {
+            has_trait = sadistic
+        }
+        stress_impact = {
+            sadistic = minor_stress_impact_loss
+        }
+        # todo add searching effect
+
+        trait = sadistic
+    }
+
+
+    option = {
         name = report_dragon.0001.option.calm
         trigger = {
             has_trait = calm
         }
         trait = calm
-        stress_impact = {
-            ambitious = medium_stress_impact_gain
-        }
     }
     option = {
         name = report_dragon.0001.option.craven
@@ -112,11 +138,11 @@ report_dragon.0001 = {
             if = {
                 limit = {
                     NOT = {has_trait = craven}
+                    NOT = {has_trait = compassionate}
                 }
                 add_opinion = {
                     target = ROOT
-                    modifier = disappointed_opinion
-                    opinion = -10
+                    modifier = weak_excuses
                 }
             }
             else = {
@@ -128,28 +154,193 @@ report_dragon.0001 = {
             }
         }
     }
-
     option = {
-        name = report_dragon.0001.option.sadistic
+        name = report_dragon.0001.option.humble
         trigger = {
-            has_trait = sadistic
+            OR = {
+                has_trait = humble
+                has_trait = zealous
+            }
         }
-        stress_impact = {
-            sadistic = minor_stress_impact_loss
-        }
+        trait = humble
+        trait = zealous
 
-        trait = sadistic
-    }
-    option = {
-        name = report_dragon.0001.option.calm
-        trigger = {
-            has_trait = calm
-        }
-        trait = calm
+        add_piety = 50
+
+        # todo add searching effect
     }
 
     option = {
-        name = "微不足道的小事"
+        name = report_dragon.0001.option.diligent
+        trigger = {
+            OR = {
+                has_trait = diligent
+                has_trait = ambitious
+            }
+        }
+        has_trait = diligent
+        has_trait = ambitious
+
+        add_prestige = 40
+
+        # todo add searching effect
+    }
+    option = {
+        # arrogant or cynical
+        name = report_dragon.0001.option.arrogant
+        trigger = {
+            OR = {
+                has_trait = arrogant
+                has_trait = cynical
+            }
+        }
+        has_trait = arrogant
+        has_trait = cynical
+    }
+
+    option = {
+        # content or lazy or impatient
+        name = report_dragon.0001.option.lazy
+        trigger = {
+            OR = {
+                has_trait = content
+                has_trait = lazy
+                has_trait = impatient
+            }
+        }
+        has_trait = content
+        has_trait = lazy
+        has_trait = impatient
+
+        ROOT.primary_spouse =  {
+            if = {
+                limit = {
+                    NOR = {
+                        has_trait = content
+                        has_trait = lazy
+                        has_trait = impatient
+                    }
+                }
+                add_opinion = {
+                    target = ROOT
+                    modifier = disappointed_opinion
+                    opinion = -10
+                }
+            }
+            else = {
+                add_opinion = {
+                    target = ROOT
+                    modifier = pleased_opinion
+                    opinion = 15
+                }
+            }
+        }
+
+    }
+
+
+    option = {
+        name = report_dragon.0001.option.honest
+        trigger = {
+            OR = {
+                has_trait = honest
+                has_trait = stubborn
+            }
+        }
+        has_trait = honest
+        has_trait = stubborn
+
+        # todo add searching effect
+    }
+
+    option = {
+        name = report_dragon.0001.option.shy
+        trigger = {
+            has_trait = shy
+        }
+        has_trait = shy
+    }
+    option = {
+        name = report_dragon.0001.option.patient
+        trigger = {
+            has_trait = patient
+        }
+        has_trait = patient
+    }
+    option = {
+        name = report_dragon.0001.option.honest
+        trigger = {
+            has_trait = honest
+        }
+        has_trait = honest
+    }
+    option = {
+        name = report_dragon.0001.option.gluttonous
+        trigger = {
+            has_trait = gluttonous
+        }
+        has_trait = gluttonous
+        ROOT.primary_spouse =  {
+            if = {
+                limit = {
+                    NOT = {
+                        has_trait = gluttonous
+                    }
+                }
+                add_opinion = {
+                    target = ROOT
+                    modifier = bored_opinion
+                    opinion = -10
+                }
+            }
+            else = {
+                add_opinion = {
+                    target = ROOT
+                    modifier = pleased_opinion
+                    opinion = 20
+                }
+            }
+        }
+    }
+    option = {
+        name = report_dragon.0001.option.brave
+        trigger = {
+            has_trait = brave
+        }
+        has_trait = brave
+        ROOT.primary_spouse = {
+            add_opinion = {
+                target = ROOT
+                modifier = trusting_spouse_opinion
+                opinion = 30
+            }
+        }
+    }
+
+    option = {
+        trigger = {
+            NOR =   {
+                has_trait = brave
+                has_trait = gluttonous
+                has_trait = honest
+                has_trait = patient
+                has_trait = shy
+                has_trait = honest
+                has_trait = stubborn
+                has_trait = humble
+                has_trait = zealous
+                has_trait = diligent
+                has_trait = ambitious
+                has_trait = arrogant
+                has_trait = cynical
+                has_trait = content
+                has_trait = lazy
+                has_trait = impatient
+                has_trait = clam
+                has_trait = craven
+            }
+        }
+        name = report_dragon.0001.option.nor
     }
 }
 
@@ -183,4 +374,19 @@ report_dragon.0002 = {
             remove_county_modifier = destroy_by_dragon_modifier
         }
     }
+
+        # add planning_an_activity make ROOT not move to other county
+        #add_character_flag = {
+        # 			flag = planning_an_activity
+        # 			days = 30
+        # 		}
+
+        # move to province ?
+        #$HOLY_SITE$.title_province = {
+        #		spawn_activity = {
+        #			owner = root
+        #			type = activity_pilgrimage
+        #		}
+        #	}
+
 }

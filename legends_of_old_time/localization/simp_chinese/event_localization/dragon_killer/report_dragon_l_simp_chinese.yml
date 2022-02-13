@@ -5,10 +5,32 @@ l_simp_chinese:
   report_dragon.0001.t:0 "夜色中的黑影"
   report_dragon.0001.d:0 "瞥见一个黑影于城堡外掠过。"
 
-  report_dragon.0001.option.deceitful:0 "不知道别人是否看到。"
+  # fickle or deceitful or paranoid
+  report_dragon.0001.option.deceitful:0 "不知道别人是否看到……"
   report_dragon.0001.option.sadistic:0 "“叫醒所有休息的守卫和仆从，去看看怎么回事”"
   report_dragon.0001.option.calm:0 "一定是看错了。"
   report_dragon.0001.option.craven:0 "哦！那是什么？"
+  # humble or zealous
+  report_dragon.0001.option.humble:0 "或许是神迹？我应该派人去看看。"
+  # diligent or ambitious
+  report_dragon.0001.option.diligent:0 "不知道对我的臣民有什么影响，应该派人询问一下。"
+  # arrogant or cynical
+  report_dragon.0001.option.arrogant:0 "一只蝙蝠而已。不过估计会有神棍借题发挥。"
+  # content or lazy or impatient
+  report_dragon.0001.option.lazy:0 "一定是觉睡少了，该上床了。"
+  # honest or stubborn
+  report_dragon.0001.option.honest:0 "我发誓我看到了什么东西！来人，去看看。"
+  report_dragon.0001.option.shy:0 "或许我看到了什么？"
+  # patient
+  report_dragon.0001.option.patient:0 "再仔细观察一下。"
+  # temperate
+  report_dragon.0001.option.honest:0 "或许是吃多了导致出了幻觉。"
+  # gluttonous
+  report_dragon.0001.option.gluttonous:0 "一定是饿坏了。来人，通知厨房开火。"
+  # brave
+  report_dragon.0001.option.brave:0 "无论发生什么我都会保护自己的家人和臣民。"
+  # other trait
+  report_dragon.0001.option.nor:0 "可能是我看错了。"
 
   report_dragon.0002.option.a:0 "好"
 

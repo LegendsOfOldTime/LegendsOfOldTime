@@ -1,4 +1,11 @@
 ﻿
+#####################
+
+
+# Dragon Values
+
+
+#####################
 
 
 had_report_dragon_0001_interval = 10
