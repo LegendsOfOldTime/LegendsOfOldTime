@@ -1,0 +1,5 @@
+﻿
+
+
+had_report_dragon_0001_interval = 10
+destroy_by_dragon_modifier_time = 30

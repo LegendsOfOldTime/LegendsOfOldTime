@@ -1,5 +1,16 @@
 ﻿
 ## utf-8-bom
 l_simp_chinese:
-  report_dragon.0001.t:0 "令人不安的消息"
-  report_dragon.0001.d:0 "在[develop_county.GetNameNoTier]出现了一条巨龙。"
+
+  report_dragon.0001.t:0 "夜色中的黑影"
+  report_dragon.0001.d:0 "瞥见一个黑影于城堡外掠过。"
+
+  report_dragon.0001.option.deceitful:0 "不知道别人是否看到。"
+  report_dragon.0001.option.sadistic:0 "“叫醒所有休息的守卫和仆从，去看看怎么回事”"
+  report_dragon.0001.option.calm:0 "一定是看错了。"
+  report_dragon.0001.option.craven:0 "哦！那是什么？"
+
+  report_dragon.0002.option.a:0 "好"
+
+  report_dragon.0002.t:0 "巨龙陨落"
+  report_dragon.0002.d:0 "袭扰[develop_county.GetNameNoTier]的巨龙已经被杀死。击杀巨龙的伟大壮举在该地广泛流传，相信不远的将来这里会恢复往日的宁静。"

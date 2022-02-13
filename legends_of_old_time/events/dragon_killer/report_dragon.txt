@@ -1,4 +1,4 @@
-
+﻿
 namespace = report_dragon
 
 #####################
@@ -21,23 +21,35 @@ scripted_trigger report_dragon_has_mountains = {
 }
 
 
+
+
 # create villagers who report the dragon,and make city be destructed
 report_dragon.0001 = {
 
     title = report_dragon.0001.t
     desc = report_dragon.0001.d
+    theme = secret
 
-    hidden = yes
-    theme = hunt_activity
 	right_portrait = {
     		character = ROOT
-    		animation = war_attacker
+    		animation = worry
+    }
+	left_portrait = {
+        trigger_if = {
+            limit = {
+                is_married = yes
+            }
+        }
+        character = ROOT.primary_spouse
+        animation = worry
     }
 
     trigger = {
         is_landed = yes
         # is_in_civil_war = no
-        NOT = { has_character_flag = destroy_by_dragon_modifier }
+        NOT = {
+            exists = had_report_dragon_0001
+        }
     }
 
     immediate = {
@@ -57,28 +69,118 @@ report_dragon.0001 = {
 			flag = destroy_by_dragon_modifier
 			days = 365
 		}
-
-		scope:develop_county = {
-            add_county_modifier = {
-                modifier = destroy_by_dragon_modifier
-                days = 365
+		hidden_effect = {
+		    scope:develop_county = {
+                add_county_modifier = {
+                    modifier = destroy_by_dragon_modifier
+                    year = destroy_by_dragon_modifier_time
+                }
             }
+		}
+
+        set_global_variable = {
+             name = begin_county
+             value = scope:develop_county
+        }
+
+        set_global_variable = {
+             name = had_report_dragon_0001
+             value = yes
+             days = had_report_dragon_0001_interval
         }
 	}
-    #option = { #I'll get right on it!
-    #		name = vassal.2801.a
-    #		#scope:develop_county = {
-    #		#	add_county_modifier = {
-    #		#		modifier = destroy_by_dragon_modifier
-    #		#		days = 365
-    #		#	}
-    #		#}
-    #		stress_impact = {
-    #			ambitious = medium_stress_impact_gain
-    #		}
+    option = {
+        name = report_dragon.0001.option.calm
+        trigger = {
+            has_trait = calm
+        }
+        trait = calm
+        stress_impact = {
+            ambitious = medium_stress_impact_gain
+        }
+    }
+    option = {
+        name = report_dragon.0001.option.craven
+        trigger = {
+            has_trait = craven
+        }
+        trait = craven
+        stress_impact = {
+            craven = miniscule_stress_impact_gain
+        }
+        ROOT.primary_spouse =  {
+            if = {
+                limit = {
+                    NOT = {has_trait = craven}
+                }
+                add_opinion = {
+                    target = ROOT
+                    modifier = disappointed_opinion
+                    opinion = -10
+                }
+            }
+            else = {
+                add_opinion = {
+                    target = ROOT
+                    modifier = pity_opinion
+                    opinion = 15
+                }
+            }
+        }
+    }
+
+    option = {
+        name = report_dragon.0001.option.sadistic
+        trigger = {
+            has_trait = sadistic
+        }
+        stress_impact = {
+            sadistic = minor_stress_impact_loss
+        }
+
+        trait = sadistic
+    }
+    option = {
+        name = report_dragon.0001.option.calm
+        trigger = {
+            has_trait = calm
+        }
+        trait = calm
+    }
+
+    option = {
+        name = "微不足道的小事"
+    }
+}
+
+report_dragon.0002 = {
+
+    title = report_dragon.0002.t
+    desc = report_dragon.0002.d
+    theme = hunt_activity
+    right_portrait = {
+        character = ROOT
+        animation = war_attacker
+    }
+    #immediate = {
+    #    random_realm_county = {
+    #        limit = {
+    #            has_county_modifier = destroy_by_dragon_modifier
+    #        }
+    #        save_scope_as = develop_county
+    #    }
     #}
 
-    #option = {
-    #    name = vassal.2801.b
-    #}
+    immediate = {
+        global_var:begin_county = {
+            save_scope_as = develop_county
+        }
+    }
+
+    option = {
+        name = report_dragon.0002.option.a
+        scope:develop_county = {
+            remove_county_modifier = destroy_by_dragon_modifier
+        }
+    }
 }
