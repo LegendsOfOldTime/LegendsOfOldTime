@@ -1,0 +1,44 @@
+﻿#####################
+
+
+# Dragon Scripted Modifiers
+
+
+#####################
+
+random_list_test = {
+    # Root wins
+    50 = {
+        show_chance = no
+        desc = hold_court.7050.b.victory
+        scope:lunatic_soldier = {
+            death = {
+                killer = root
+                death_reason = death_duel
+            }
+        }
+        add_prestige = major_prestige_gain
+        add_stress = major_stress_loss
+        if = {
+            limit = { NOT = { has_trait = lifestyle_blademaster } }
+            add_trait = blademaster_1
+        }
+        if = {
+            limit = { has_trait = blademaster_1 }
+            add_trait = blademaster_2
+        }
+        if = {
+            limit = { has_trait = blademaster_2 }
+            add_trait = blademaster_3
+        }
+    }
+    # Lunatic Soldier wins
+    50 = {
+        show_chance = no
+        desc = hold_court.7050.b.defeat
+        death = {
+            killer = scope:lunatic_soldier
+            death_reason = death_duel
+        }
+    }
+}

@@ -5,8 +5,8 @@ namespace = report_dragon
 
 ## Report & Searching Dragon Events
 
-# 0000 report
-# 0001 searching
+# report_dragon.0001 see dragon
+# report_dragon.0001 send a search party
 
 # by will
 #####################
@@ -23,7 +23,7 @@ scripted_trigger report_dragon_has_mountains = {
 
 
 
-# create villagers who report the dragon,and make city be destructed
+# see dragon and make county be destructed
 report_dragon.0001 = {
 
     title = report_dragon.0001.t
@@ -112,8 +112,10 @@ report_dragon.0001 = {
         stress_impact = {
             sadistic = minor_stress_impact_loss
         }
-        # todo add searching effect
-
+        # searching effect
+        trigger_event = {
+            id = report_dragon.0002
+        }
         trait = sadistic
     }
 
@@ -167,7 +169,10 @@ report_dragon.0001 = {
 
         add_piety = 50
 
-        # todo add searching effect
+        # searching effect
+        trigger_event = {
+            id = report_dragon.0002
+        }
     }
 
     option = {
@@ -178,12 +183,23 @@ report_dragon.0001 = {
                 has_trait = ambitious
             }
         }
+        # todo flavor
+        flavor = "flavor"
+        # todo custom_tooltip
+        custom_tooltip = "custom_tooltip"
         has_trait = diligent
         has_trait = ambitious
 
         add_prestige = 40
 
-        # todo add searching effect
+        # searching effect
+        trigger_event = {
+            id = report_dragon.0002
+            days = 1
+        }
+
+        # todo learn grammar from  `hold_court.6200`
+
     }
     option = {
         # arrogant or cynical
@@ -250,7 +266,11 @@ report_dragon.0001 = {
         has_trait = honest
         has_trait = stubborn
 
-        # todo add searching effect
+        # searching effect
+        trigger_event = {
+            id = report_dragon.0002
+            days = 1
+        }
     }
 
     option = {
@@ -344,6 +364,7 @@ report_dragon.0001 = {
     }
 }
 
+# send a search party
 report_dragon.0002 = {
 
     title = report_dragon.0002.t
@@ -363,6 +384,15 @@ report_dragon.0002 = {
     #}
 
     immediate = {
+
+        ROOT.primary_spouse = {
+            add_opinion = {
+                target = ROOT
+                modifier = trusting_spouse_opinion
+                opinion = 30
+            }
+        }
+
         global_var:begin_county = {
             save_scope_as = develop_county
         }
