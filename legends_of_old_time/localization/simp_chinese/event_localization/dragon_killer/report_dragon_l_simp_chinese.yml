@@ -32,7 +32,10 @@ l_simp_chinese:
   # other trait
   report_dragon.0001.option.nor:0 "可能是我看错了。"
 
-  report_dragon.0002.option.a:0 "好"
+  report_dragon.0001.tooltip.a:0 "喊醒[target_courtier.GetTitledFirstName]，让[target_courtier.GetSheHe]赶紧爬起来去看看。"
+  report_dragon.0001.tooltip.b:0 "[target_courtier.GetTitledFirstName]动身去检查神迹"
+  report_dragon.0001.tooltip.c:0 "[target_courtier.GetTitledFirstName]将动身前去探查。"
+  report_dragon.0001.tooltip.d:0 "忠诚的[target_courtier.GetTitledFirstName]将代我看看是不是真的有什么东西出现。"
 
   report_dragon.0002.t:0 "巨龙陨落"
   report_dragon.0002.d:0 "袭扰[develop_county.GetNameNoTier]的巨龙已经被杀死。击杀巨龙的伟大壮举在该地广泛流传，相信不远的将来这里会恢复往日的宁静。"

@@ -65,7 +65,8 @@ report_dragon.0001 = {
             }
         }
 
-		add_character_flag = {
+        # todo check target_courtier is null or not.
+ 		add_character_flag = {
 			flag = destroy_by_dragon_modifier
 			days = 365
 		}
@@ -112,6 +113,20 @@ report_dragon.0001 = {
         stress_impact = {
             sadistic = minor_stress_impact_loss
         }
+        # todo get a not honest
+        ordered_courtier = {
+            limit = {
+                is_available_ai_adult = yes
+            }
+            order_by = opinion
+            save_scope_as = target_courtier
+        }
+
+        # todo flavor
+        flavor = "派出一个不满你统治的人去看看。"
+        # todo custom_tooltip
+        custom_tooltip = report_dragon.0001.tooltip.a
+
         # searching effect
         trigger_event = {
             id = report_dragon.0002
@@ -164,15 +179,34 @@ report_dragon.0001 = {
                 has_trait = zealous
             }
         }
+        ordered_courtier = {
+            limit = {
+                is_available_ai_adult = yes
+            }
+            order_by = learning
+            max = 1
+            save_scope_as = target_courtier
+        }
         trait = humble
         trait = zealous
 
         add_piety = 50
 
+        # todo flavor
+        flavor = "派出一个虔诚的人。"
+        # todo custom_tooltip
+        custom_tooltip = report_dragon.0001.tooltip.b
+        has_trait = diligent
+        has_trait = ambitious
+
+        add_prestige = 40
+
         # searching effect
         trigger_event = {
             id = report_dragon.0002
+            days = {10 20}
         }
+
     }
 
     option = {
@@ -183,10 +217,17 @@ report_dragon.0001 = {
                 has_trait = ambitious
             }
         }
+
+        random_courtier = {
+            limit = {
+                is_available_ai_adult = yes
+            }
+            save_scope_as = target_courtier
+        }
         # todo flavor
-        flavor = "flavor"
+        flavor = "派出一个精明的人去看看。"
         # todo custom_tooltip
-        custom_tooltip = "custom_tooltip"
+        custom_tooltip = report_dragon.0001.tooltip.c
         has_trait = diligent
         has_trait = ambitious
 
@@ -195,7 +236,7 @@ report_dragon.0001 = {
         # searching effect
         trigger_event = {
             id = report_dragon.0002
-            days = 1
+            days = {10 20}
         }
 
         # todo learn grammar from  `hold_court.6200`
@@ -251,7 +292,6 @@ report_dragon.0001 = {
                 }
             }
         }
-
     }
 
 
@@ -263,14 +303,29 @@ report_dragon.0001 = {
                 has_trait = stubborn
             }
         }
-        has_trait = honest
-        has_trait = stubborn
+        #has_trait = honest
+        #has_trait = stubborn
 
+        ordered_courtier = {
+            limit = {
+                is_available_ai_adult = yes
+            }
+            # get honest number
+            order_by = {
+                value = opinions
+                multiply = -1
+            }
+            save_scope_as = target_courtier
+        }
         # searching effect
         trigger_event = {
             id = report_dragon.0002
             days = 1
         }
+
+        # todo flavor
+        flavor = "派出一个忠诚的人去看看。"
+        custom_tooltip = report_dragon.0001.tooltip.d
     }
 
     option = {
@@ -286,13 +341,6 @@ report_dragon.0001 = {
             has_trait = patient
         }
         has_trait = patient
-    }
-    option = {
-        name = report_dragon.0001.option.honest
-        trigger = {
-            has_trait = honest
-        }
-        has_trait = honest
     }
     option = {
         name = report_dragon.0001.option.gluttonous
