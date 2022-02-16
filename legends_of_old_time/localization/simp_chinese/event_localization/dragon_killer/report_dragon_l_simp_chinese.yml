@@ -7,7 +7,7 @@ l_simp_chinese:
 
   # fickle or deceitful or paranoid
   report_dragon.0001.option.deceitful:0 "不知道别人是否看到……"
-  report_dragon.0001.option.sadistic:0 "“叫醒所有休息的守卫和仆从，去看看怎么回事”"
+  report_dragon.0001.option.sadistic:0 "“叫醒一个人去看看怎么回事”"
   report_dragon.0001.option.calm:0 "一定是看错了。"
   report_dragon.0001.option.craven:0 "哦！那是什么？"
   # humble or zealous
@@ -35,7 +35,8 @@ l_simp_chinese:
   report_dragon.0001.tooltip.a:0 "喊醒[target_courtier.GetTitledFirstName]，让[target_courtier.GetSheHe]赶紧爬起来去看看。"
   report_dragon.0001.tooltip.b:0 "[target_courtier.GetTitledFirstName]动身去检查神迹"
   report_dragon.0001.tooltip.c:0 "[target_courtier.GetTitledFirstName]将动身前去探查。"
-  report_dragon.0001.tooltip.d:0 "忠诚的[target_courtier.GetTitledFirstName]将代我看看是不是真的有什么东西出现。"
+  report_dragon.0001.tooltip.d_1:0 "忠诚的[target_courtier.GetTitledFirstName]将代我看看是不是真的有什么东西出现。"
+  report_dragon.0001.tooltip.d_2:0 "[target_courtier.GetTitledFirstName]将代我看看是不是真的有什么东西出现。"
 
   report_dragon.0002.t:0 "巨龙陨落"
   report_dragon.0002.d:0 "袭扰[develop_county.GetNameNoTier]的巨龙已经被杀死。击杀巨龙的伟大壮举在该地广泛流传，相信不远的将来这里会恢复往日的宁静。"

@@ -114,18 +114,63 @@ report_dragon.0001 = {
             sadistic = minor_stress_impact_loss
         }
         # todo get a not honest
-        ordered_courtier = {
-            limit = {
-                is_available_ai_adult = yes
-            }
-            order_by = opinion
-            save_scope_as = target_courtier
+        random_courtier = {
+           limit = {
+               is_available_ai_adult = yes
+               NOT = {
+                    is_spouse_of = ROOT
+               }
+               opinion = {
+                  target = ROOT
+                  value  < -50
+               }
+           }
+           save_scope_as = target_courtier
         }
 
-        # todo flavor
-        flavor = "派出一个不满你统治的人去看看。"
-        # todo custom_tooltip
-        custom_tooltip = report_dragon.0001.tooltip.a
+
+        if = {
+            limit = {
+                # is there any loyalty courtier
+                exists = scope:target_courtier
+            }
+            custom_tooltip = report_dragon.0001.tooltip.a
+        }
+        else = {
+            random_courtier = {
+                limit = {
+                    is_available_ai_adult = yes
+                    NOT = {
+                        is_spouse_of = ROOT
+                    }
+                }
+                save_scope_as = target_courtier
+            }
+            save_scope_value_as = {
+                name = use_random_courtier_without_opinion
+                value = yes
+            }
+            custom_tooltip = report_dragon.0001.tooltip.a
+        }
+
+        flavor = {
+            first_valid = {
+                triggered_desc = {
+                    trigger = {
+                        exists = scope:use_random_courtier_without_opinion
+                    }
+                    desc = "派出一个人去看看。"
+                }
+                desc = "派出一个不满你统治的人去看看。"
+            }
+        }
+
+        add_opinion = {
+            target = scope:target_courtier
+            modifier = disappointed_opinion
+            opinion = -10
+        }
+
 
         # searching effect
         trigger_event = {
@@ -151,25 +196,32 @@ report_dragon.0001 = {
         stress_impact = {
             craven = miniscule_stress_impact_gain
         }
-        ROOT.primary_spouse =  {
-            if = {
-                limit = {
-                    NOT = {has_trait = craven}
-                    NOT = {has_trait = compassionate}
-                }
-                add_opinion = {
-                    target = ROOT
-                    modifier = weak_excuses
-                }
+
+        IF = {
+            limit = {
+                exists = ROOT.primary_spouse
             }
-            else = {
-                add_opinion = {
-                    target = ROOT
-                    modifier = pity_opinion
-                    opinion = 15
+            ROOT.primary_spouse =  {
+                if = {
+                    limit = {
+                        NOT = {has_trait = craven}
+                        NOT = {has_trait = compassionate}
+                    }
+                    add_opinion = {
+                        target = ROOT
+                        modifier = weak_excuses
+                    }
+                }
+                else = {
+                    add_opinion = {
+                        target = ROOT
+                        modifier = pity_opinion
+                        opinion = 15
+                    }
                 }
             }
         }
+
     }
     option = {
         name = report_dragon.0001.option.humble
@@ -293,8 +345,6 @@ report_dragon.0001 = {
             }
         }
     }
-
-
     option = {
         name = report_dragon.0001.option.honest
         trigger = {
@@ -303,29 +353,58 @@ report_dragon.0001 = {
                 has_trait = stubborn
             }
         }
-        #has_trait = honest
-        #has_trait = stubborn
 
-        ordered_courtier = {
+        random_courtier = {
             limit = {
                 is_available_ai_adult = yes
-            }
-            # get honest number
-            order_by = {
-                value = opinions
-                multiply = -1
+                opinion = {
+                    target = ROOT
+                    value > 50
+                }
             }
             save_scope_as = target_courtier
         }
+
+        if = {
+            limit = {
+                # is there any loyalty courtier
+                exists = scope:target_courtier
+            }
+            custom_tooltip = report_dragon.0001.tooltip.d_1
+        }
+        else = {
+            random_courtier = {
+                limit = {
+                    is_available_ai_adult = yes
+                }
+                save_scope_as = target_courtier
+            }
+            save_scope_value_as = {
+                name = use_random_courtier_without_opinion
+                value = yes
+            }
+            custom_tooltip = report_dragon.0001.tooltip.d_2
+        }
+
+
+        flavor = {
+            first_valid = {
+                triggered_desc = {
+                    trigger = {
+                        exists = scope:use_random_courtier_without_opinion
+                    }
+                    desc = "派出一个人去看看。"
+                }
+                desc = "派出一个忠诚的人去看看。"
+            }
+        }
+
         # searching effect
         trigger_event = {
             id = report_dragon.0002
             days = 1
         }
 
-        # todo flavor
-        flavor = "派出一个忠诚的人去看看。"
-        custom_tooltip = report_dragon.0001.tooltip.d
     }
 
     option = {
