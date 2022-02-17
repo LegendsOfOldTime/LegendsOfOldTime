@@ -38,5 +38,23 @@ l_simp_chinese:
   report_dragon.0001.tooltip.d_1:0 "忠诚的[target_courtier.GetTitledFirstName]将代我看看是不是真的有什么东西出现。"
   report_dragon.0001.tooltip.d_2:0 "[target_courtier.GetTitledFirstName]将代我看看是不是真的有什么东西出现。"
 
-  report_dragon.0002.t:0 "巨龙陨落"
-  report_dragon.0002.d:0 "袭扰[develop_county.GetNameNoTier]的巨龙已经被杀死。击杀巨龙的伟大壮举在该地广泛流传，相信不远的将来这里会恢复往日的宁静。"
+  report_dragon.0002.t:0 "惊险巨龙！"
+  report_dragon.0002.d:0 "“大人。在[develop_county.GetNameNoTier]好像发现一条巨龙，村民们，村庄遭到了它的袭击，它掠走了牲畜，焚毁了村庄。”"
+
+  # craven
+  report_dragon.0002.option.craven:0 "哦不，怎么会有这么恐怖的事情！"
+  # brave or ambitious
+  report_dragon.0002.option.brave:0 "准备出发，目标：[develop_county.GetNameNoTier]。"
+  report_dragon.0002.option.humble:0 "哦神啊，请为我的行动祝福！。"
+  report_dragon.0002.option.zealous:0 "以神的名义，解救[develop_county.GetNameNoTier]遭受龙害的子民！"
+  report_dragon.0002.option.sadistic:0 "嗯……或许一个条龙更适合做我的奴隶。"
+  # Without these qualities
+  report_dragon.0002.option.normal_0:0 "该是尽到一个领主的责任了。"
+  report_dragon.0002.option.normal_1:0 "任他们自生自灭吧。"
+
+
+  report_dragon.0002.flavor.normal_0:0 "准备屠龙。"
+  report_dragon.0002.flavor.normal_1:0 "忘记这件事情。"
+
+  report_dragon.0002.tooltip.normal_0:0 "获得决议：准备启程。"
+  report_dragon.0002.tooltip.normal_1:0 "你放弃对这条危害领土的龙做出行动，任由其蹂躏你的子民。"

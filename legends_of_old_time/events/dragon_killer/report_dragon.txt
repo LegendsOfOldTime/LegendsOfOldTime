@@ -50,6 +50,7 @@ report_dragon.0001 = {
         NOT = {
             exists = had_report_dragon_0001
         }
+        # TODO  check every province
     }
 
     immediate = {
@@ -132,7 +133,10 @@ report_dragon.0001 = {
         if = {
             limit = {
                 # is there any loyalty courtier
-                exists = scope:target_courtier
+               exists = scope:target_courtier
+               NOT = {
+                    is_spouse_of = ROOT
+               }
             }
             custom_tooltip = report_dragon.0001.tooltip.a
         }
@@ -146,10 +150,8 @@ report_dragon.0001 = {
                 }
                 save_scope_as = target_courtier
             }
-            save_scope_value_as = {
-                name = use_random_courtier_without_opinion
-                value = yes
-            }
+            save_temporary_scope_as = use_random_courtier_without_opinion
+
             custom_tooltip = report_dragon.0001.tooltip.a
         }
 
@@ -320,27 +322,32 @@ report_dragon.0001 = {
         has_trait = content
         has_trait = lazy
         has_trait = impatient
-
-        ROOT.primary_spouse =  {
-            if = {
-                limit = {
-                    NOR = {
-                        has_trait = content
-                        has_trait = lazy
-                        has_trait = impatient
+        # make sure root has spouse
+        IF = {
+            limit = {
+                exists = ROOT.primary_spouse
+            }
+            ROOT.primary_spouse =  {
+                if = {
+                    limit = {
+                        NOR = {
+                            has_trait = content
+                            has_trait = lazy
+                            has_trait = impatient
+                        }
+                    }
+                    add_opinion = {
+                        target = ROOT
+                        modifier = disappointed_opinion
+                        opinion = -10
                     }
                 }
-                add_opinion = {
-                    target = ROOT
-                    modifier = disappointed_opinion
-                    opinion = -10
-                }
-            }
-            else = {
-                add_opinion = {
-                    target = ROOT
-                    modifier = pleased_opinion
-                    opinion = 15
+                else = {
+                    add_opinion = {
+                        target = ROOT
+                        modifier = pleased_opinion
+                        opinion = 15
+                    }
                 }
             }
         }
@@ -356,7 +363,10 @@ report_dragon.0001 = {
 
         random_courtier = {
             limit = {
-                is_available_ai_adult = yes
+                is_adult = yes
+                NOT = {
+                    is_spouse_of = ROOT
+                }
                 opinion = {
                     target = ROOT
                     value > 50
@@ -364,36 +374,56 @@ report_dragon.0001 = {
             }
             save_scope_as = target_courtier
         }
-
         if = {
             limit = {
-                # is there any loyalty courtier
-                exists = scope:target_courtier
+                NOT = {exists = target_courtier}
+            }
+            random_courtier = {
+                limit = {
+                    is_adult = yes
+                    NOT = {
+                        is_spouse_of = ROOT
+                    }
+                }
+                save_scope_as = target_courtier
+            }
+        }
+        if = {
+            limit = {
+                scope:target_courtier = {
+                    opinion = {
+                        target = ROOT
+                        value >= 50
+                    }
+                }
             }
             custom_tooltip = report_dragon.0001.tooltip.d_1
         }
         else = {
-            random_courtier = {
-                limit = {
-                    is_available_ai_adult = yes
-                }
-                save_scope_as = target_courtier
-            }
-            save_scope_value_as = {
-                name = use_random_courtier_without_opinion
-                value = yes
-            }
             custom_tooltip = report_dragon.0001.tooltip.d_2
         }
 
-
+        # todo search solution to show different flavor or trigger method
         flavor = {
-            first_valid = {
-                triggered_desc = {
-                    trigger = {
-                        exists = scope:use_random_courtier_without_opinion
+            triggered_desc = {
+                trigger = {
+                    scope:target_courtier = {
+                        opinion = {
+                            target = ROOT
+                            value >= 50
+                        }
                     }
-                    desc = "派出一个人去看看。"
+                }
+                desc = "派出一个忠诚的人去看看。"
+            }
+            triggered_desc = {
+                trigger = {
+                    scope:target_courtier = {
+                        opinion = {
+                            target = ROOT
+                            value < 50
+                        }
+                    }
                 }
                 desc = "派出一个忠诚的人去看看。"
             }
@@ -491,59 +521,71 @@ report_dragon.0001 = {
     }
 }
 
-# send a search party
+# send a search party and get result
 report_dragon.0002 = {
 
     title = report_dragon.0002.t
     desc = report_dragon.0002.d
-    theme = hunt_activity
+    theme = rival_relation
+    background = council_chamber
+
     right_portrait = {
         character = ROOT
-        animation = war_attacker
+        animation = shock
     }
-    #immediate = {
-    #    random_realm_county = {
-    #        limit = {
-    #            has_county_modifier = destroy_by_dragon_modifier
-    #        }
-    #        save_scope_as = develop_county
-    #    }
-    #}
+
+    left_portrait = {
+        character = scope:target_courtier
+        animation = fear
+    }
 
     immediate = {
-
-        ROOT.primary_spouse = {
-            add_opinion = {
-                target = ROOT
-                modifier = trusting_spouse_opinion
-                opinion = 30
-            }
-        }
-
         global_var:begin_county = {
             save_scope_as = develop_county
         }
-    }
-
-    option = {
-        name = report_dragon.0002.option.a
         scope:develop_county = {
             remove_county_modifier = destroy_by_dragon_modifier
         }
     }
 
-        # add planning_an_activity make ROOT not move to other county
-        #add_character_flag = {
-        # 			flag = planning_an_activity
-        # 			days = 30
-        # 		}
+    option = {
+        name =  report_dragon.0002.option.craven
+        trigger = {
+            OR = {
+                # fickle or deceitful or paranoid
+                has_trait = craven
+            }
+        }
+        scope:target_courtier = {
+            if = {
+                limit = {
+                    NOT = {
+                        has_trait = craven
+                    }
+                }
+                add_opinion = {
+                    target = ROOT
+                    modifier = disappointed_opinion
+                    opinion = -10
+                }
+            }
+        }
+    }
 
-        # move to province ?
-        #$HOLY_SITE$.title_province = {
-        #		spawn_activity = {
-        #			owner = root
-        #			type = activity_pilgrimage
-        #		}
-        #	}
+    option = {
+        name =  report_dragon.0002.option.normal_0
+        flavor = report_dragon.0002.flavor.normal_0
+        custom_tooltip = report_dragon.0002.flavor.normal_0
+        set_global_variable = {
+            name = ready_to_killer_dragon
+            value = yes
+            year = 10
+        }
+    }
 
+    option = {
+        name =  report_dragon.0002.option.normal_1
+        flavor = report_dragon.0002.flavor.normal_1
+        custom_tooltip = report_dragon.0002.flavor.normal_1
+    }
 }
