@@ -20,3 +20,14 @@ trusting_spouse_opinion = {
 	years = 5
 	decaying = yes
 }
+
+thank_liege_opinion = {
+	opinion = 20
+	years = 5
+	decaying = yes
+}
+resentment_liege_opinion = {
+	opinion = -20
+	years = 5
+	decaying = yes
+}

@@ -181,6 +181,9 @@ report_dragon.0001 = {
         trait = sadistic
     }
 
+    after = {
+        remove_variable = normal_courtier
+    }
 
     option = {
         name = report_dragon.0001.option.calm
@@ -376,7 +379,7 @@ report_dragon.0001 = {
         }
         if = {
             limit = {
-                NOT = {exists = target_courtier}
+                NOT = {exists = scope:target_courtier}
             }
             random_courtier = {
                 limit = {
@@ -388,6 +391,7 @@ report_dragon.0001 = {
                 save_scope_as = target_courtier
             }
         }
+
         if = {
             limit = {
                 scope:target_courtier = {
@@ -398,34 +402,57 @@ report_dragon.0001 = {
                 }
             }
             custom_tooltip = report_dragon.0001.tooltip.d_1
-        }
-        else = {
+        }else = {
+            set_variable = {
+                name = normal_courtier
+                value = yes
+            }
             custom_tooltip = report_dragon.0001.tooltip.d_2
         }
 
-        # todo search solution to show different flavor or trigger method
+        if = {
+            limit = {
+                scope:target_courtier = {
+                    opinion = {
+                        target = ROOT
+                        value >= 0
+                    }
+                    NOR = {
+                        has_trait = craven
+                        has_trait = lazy
+                    }
+                }
+            }
+            scope:target_courtier = {
+                add_opinion = {
+                    target = ROOT
+                    modifier = thank_liege_opinion
+                    opinion = 20
+                }
+            }
+        }
+        else = {
+            scope:target_courtier = {
+                add_opinion = {
+                    target = ROOT
+                    modifier = resentment_liege_opinion
+                    opinion = -20
+                }
+            }
+        }
+
         flavor = {
             triggered_desc = {
                 trigger = {
-                    scope:target_courtier = {
-                        opinion = {
-                            target = ROOT
-                            value >= 50
-                        }
-                    }
+                    NOT = { exists =  var:normal_courtier}
                 }
-                desc = "派出一个忠诚的人去看看。"
+                desc = report_dragon.0001.flavor.d_1
             }
             triggered_desc = {
                 trigger = {
-                    scope:target_courtier = {
-                        opinion = {
-                            target = ROOT
-                            value < 50
-                        }
-                    }
+                    exists =  var:normal_courtier
                 }
-                desc = "派出一个忠诚的人去看看。"
+                desc = report_dragon.0001.flavor.d_2
             }
         }
 

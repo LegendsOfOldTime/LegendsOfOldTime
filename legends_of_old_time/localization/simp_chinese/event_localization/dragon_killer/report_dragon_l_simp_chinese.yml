@@ -38,8 +38,12 @@ l_simp_chinese:
   report_dragon.0001.tooltip.d_1:0 "忠诚的[target_courtier.GetTitledFirstName]将代我看看是不是真的有什么东西出现。"
   report_dragon.0001.tooltip.d_2:0 "[target_courtier.GetTitledFirstName]将代我看看是不是真的有什么东西出现。"
 
+  report_dragon.0001.flavor.d_1:0 "派出一个忠诚的人去看看"
+  report_dragon.0001.flavor.d_2:0 "派一个人去看看"
+
+
   report_dragon.0002.t:0 "惊险巨龙！"
-  report_dragon.0002.d:0 "“大人。在[develop_county.GetNameNoTier]好像发现一条巨龙，村民们，村庄遭到了它的袭击，它掠走了牲畜，焚毁了村庄。”"
+  report_dragon.0002.d:0 "“我尊敬的[target_courtier.Custom2('RelationToMe', ROOT.Char)]……\n\n在[develop_county.GetNameNoTier]好像发现一条巨龙，村民们，村庄遭到了它的袭击，它掠走了牲畜，焚毁了村庄。”"
 
   # craven
   report_dragon.0002.option.craven:0 "哦不，怎么会有这么恐怖的事情！"
