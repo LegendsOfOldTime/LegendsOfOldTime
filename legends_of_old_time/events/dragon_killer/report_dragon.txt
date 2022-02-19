@@ -101,9 +101,6 @@ report_dragon.0001 = {
                 has_trait = paranoid
             }
         }
-        has_trait = fickle
-        has_trait = deceitful
-        has_trait = paranoid
     }
 
     option = {
@@ -137,6 +134,7 @@ report_dragon.0001 = {
             random_courtier = {
                 limit = {
                     is_available_ai_adult = yes
+                    is_female = no
                     NOT = {
                         is_spouse_of = ROOT
                     }
@@ -145,34 +143,7 @@ report_dragon.0001 = {
             }
         }
         custom_tooltip = report_dragon.0001.tooltip.sadistic
-        # todo remove all judge about flavor
-#        flavor = {
-#            triggered_desc = {
-#                trigger = {
-#                    scope:target_courtier = {
-#                        opinion = {
-#                            target = ROOT
-#                            value <= 90
-#                        }
-#                    }
-#                }
-#                desc = report_dragon.0001.flavor.sadistic.1
-#            }
-#            triggered_desc = {
-#                trigger = {
-#                    exists = scope:target_courtier
-#                    NOT = {
-#                        scope:target_courtier = {
-#                            opinion = {
-#                                target = ROOT
-#                                value <= 90
-#                            }
-#                        }
-#                    }
-#                }
-#                desc = report_dragon.0001.flavor.sadistic.2
-#            }
-#        }
+        flavor = report_dragon.0001.flavor.sadistic
 
         scope:target_courtier = {
             add_opinion = {
@@ -225,7 +196,7 @@ report_dragon.0001 = {
                     add_opinion = {
                         target = ROOT
                         modifier = pity_opinion
-                        opinion = 15
+                        opinion = small_opinion_modifier_positive
                     }
                 }
             }
@@ -234,7 +205,6 @@ report_dragon.0001 = {
             value = prestige_level
             multiply = medium_prestige_coefficient_negative
         }
-
     }
     option = {
         name = report_dragon.0001.option.humble
@@ -247,6 +217,7 @@ report_dragon.0001 = {
         ordered_courtier = {
             limit = {
                 is_available_ai_adult = yes
+                is_female = no
                 NOT = {
                     is_spouse_of = ROOT
                 }
@@ -274,20 +245,7 @@ report_dragon.0001 = {
             custom_tooltip = report_dragon.0001.tooltip.zealous.2
         }
 
-        flavor = {
-            triggered_desc = {
-                trigger = {
-                    NOT = { exists =  scope:target_courtier}
-                }
-                desc = report_dragon.0001.flavor.zealous.2
-            }
-            triggered_desc = {
-                trigger = {
-                    exists =  scope:target_courtier
-                }
-                desc = report_dragon.0001.flavor.zealous.1
-            }
-        }
+        flavor = report_dragon.0001.flavor.zealous
 
         add_piety = {
             value = piety_level
@@ -297,7 +255,7 @@ report_dragon.0001 = {
         # searching effect
         trigger_event = {
             id = report_dragon.0002
-            days = {10 20}
+            days = {5 15}
         }
 
     }
@@ -310,13 +268,34 @@ report_dragon.0001 = {
                 has_trait = ambitious
             }
         }
-
-        random_courtier = {
+        ordered_courtier = {
             limit = {
                 is_available_ai_adult = yes
+                is_female = no
             }
+            order_by = stewardship
             save_scope_as = target_courtier
         }
+
+        if = {
+            limit = {
+                scope:target_courtier = { judge_character_opinion_less_or_equal = {$TARGET$ = ROOT CRITICAL = 0} }
+            }
+            scope:target_courtier = {
+                add_opinion = {
+                    modifier = resentment_liege_opinion
+                    value = medium_prestige_coefficient_negative
+                }
+            }
+        }else = {
+            scope:target_courtier = {
+                add_opinion = {
+                    modifier = thank_liege_opinion
+                    value = medium_prestige_coefficient_positive
+                }
+            }
+        }
+
         flavor = report_dragon.0001.flavor.diligent
         custom_tooltip = report_dragon.0001.tooltip.diligent
 
@@ -328,7 +307,7 @@ report_dragon.0001 = {
         # searching effect
         trigger_event = {
             id = report_dragon.0002
-            days = {10 20}
+            days = {5 15}
         }
 
     }
@@ -370,14 +349,14 @@ report_dragon.0001 = {
                     add_opinion = {
                         target = ROOT
                         modifier = disappointed_opinion
-                        opinion = -10
+                        opinion = small_opinion_modifier_negative
                     }
                 }
                 else = {
                     add_opinion = {
                         target = ROOT
                         modifier = pleased_opinion
-                        opinion = 15
+                        opinion = small_opinion_modifier_positive
                     }
                 }
             }
@@ -423,7 +402,7 @@ report_dragon.0001 = {
                 save_scope_as = target_courtier
             }
         }
-        custom_tooltip = report_dragon.0001.tooltip.d_2
+        custom_tooltip = report_dragon.0001.tooltip.honest
 
         if = {
             limit = {
@@ -451,30 +430,17 @@ report_dragon.0001 = {
                 add_opinion = {
                     target = ROOT
                     modifier = resentment_liege_opinion
-                    opinion = -20
+                    opinion = medium_prestige_coefficient_negative
                 }
             }
         }
 
-        flavor = {
-            triggered_desc = {
-                trigger = {
-                    scope:target_courtier = {judge_character_opinion_less_or_equal = {CHARACTER_TARGET = ROOT CRITICAL = 50 } }
-                }
-                desc = report_dragon.0001.flavor.d_1
-            }
-            triggered_desc = {
-                trigger = {
-                    NOT = { scope:target_courtier = {judge_character_opinion_less_or_equal = { CHARACTER_TARGET = ROOT CRITICAL = 50 }}}
-                }
-                desc = report_dragon.0001.flavor.d_2
-            }
-        }
+        flavor = report_dragon.0001.flavor.honest
 
         # searching effect
         trigger_event = {
             id = report_dragon.0002
-            days = 1
+            days = {5 15}
         }
 
     }
@@ -509,18 +475,19 @@ report_dragon.0001 = {
                 add_opinion = {
                     target = ROOT
                     modifier = bored_opinion
-                    opinion = -10
+                    opinion = small_opinion_modifier_negative
                 }
             }
             else = {
                 add_opinion = {
                     target = ROOT
                     modifier = pleased_opinion
-                    opinion = 20
+                    opinion = medium_opinion_modifier_positive
                 }
             }
         }
     }
+    # send a brave man to search
     option = {
         name = report_dragon.0001.option.brave
         trigger = {
@@ -535,7 +502,7 @@ report_dragon.0001 = {
                 add_opinion = {
                     target = ROOT
                     modifier = trusting_spouse_opinion
-                    opinion = 30
+                    opinion = medium_opinion_modifier_positive
                 }
             }
         }
@@ -544,8 +511,7 @@ report_dragon.0001 = {
             limit = {
                 is_available_ai_adult = yes
                 is_female = no
-#                prowess>= decent_skill_rating
-                prowess>= 30
+                prowess>= decent_skill_rating
                 NOT = {
                     is_spouse_of = ROOT
                 }
@@ -563,13 +529,13 @@ report_dragon.0001 = {
             }
             scope:target_courtier = {
                 add_prestige = {
-                    value = prestige
+                    value = prestige_level
                     multiply = medium_piety_coefficient_positive
                 }
                 add_opinion = {
                     target = ROOT
                     modifier = thank_liege_opinion
-                    opinion = 20
+                    opinion = medium_opinion_modifier_positive
                 }
             }
 
@@ -592,20 +558,7 @@ report_dragon.0001 = {
             custom_tooltip = report_dragon.0001.tooltip.brave.2
         }
 
-        flavor = {
-            triggered_desc = {
-                trigger = {
-                    NOT = { exists =  scope:target_courtier}
-                }
-                desc = report_dragon.0001.flavor.brave.2
-            }
-            triggered_desc = {
-                trigger = {
-                    exists =  scope:target_courtier
-                }
-                desc = report_dragon.0001.flavor.brave.1
-            }
-        }
+        flavor = report_dragon.0001.flavor.brave
     }
 
     option = {
@@ -679,7 +632,7 @@ report_dragon.0002 = {
                 add_opinion = {
                     target = ROOT
                     modifier = disappointed_opinion
-                    opinion = -10
+                    opinion = small_opinion_modifier_negative
                 }
             }
         }

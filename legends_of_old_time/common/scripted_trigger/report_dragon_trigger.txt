@@ -13,14 +13,14 @@
 
 judge_character_opinion_greater_or_equal = {
     opinion = {
-        target = $CHARACTER_TARGET$
+        target = $TARGET$
         value >= $CRITICAL$
     }
 }
 
 judge_character_opinion_less_or_equal = {
     opinion = {
-        target = $CHARACTER_TARGET$
+        target = $TARGET$
         value <= $CRITICAL$
     }
 }

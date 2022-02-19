@@ -12,6 +12,21 @@ had_report_dragon_0001_interval = 10
 destroy_by_dragon_modifier_time = 30
 
 
+########## opinion_modifier
+
+small_opinion_modifier_negative = -10
+medium_opinion_modifier_negative = -20
+big_opinion_modifier_negative = -30
+extra_big_opinion_modifier_negative = -50
+
+small_opinion_modifier_positive = 10
+medium_opinion_modifier_positive = 20
+big_opinion_modifier_positive = 30
+extra_big_opinion_modifier_positive = 50
+
+
+########## prestige
+
 small_prestige_coefficient_negative = -10
 medium_prestige_coefficient_negative = -30
 big_prestige_coefficient_negative = -50
@@ -23,7 +38,7 @@ medium_prestige_coefficient_positive = 30
 big_prestige_coefficient_positive = 50
 extra_big_prestige_coefficient_positive = 100
 
-
+########## piety
 small_piety_coefficient_negative = -10
 medium_piety_coefficient_negative = -30
 big_piety_coefficient_negative = -50

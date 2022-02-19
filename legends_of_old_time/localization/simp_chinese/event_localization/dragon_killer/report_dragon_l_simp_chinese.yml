@@ -33,30 +33,18 @@ l_simp_chinese:
   report_dragon.0001.option.nor:0 "可能是我看错了"
 
   report_dragon.0001.tooltip.sadistic:0 "喊醒[target_courtier.GetTitledFirstName]，让[target_courtier.GetSheHe]赶紧爬起来去看看"
-
-  report_dragon.0001.tooltip.zealous.1:0 "[target_courtier.GetTitledFirstName]将动身去检查可能出现的神迹"
-  report_dragon.0001.tooltip.zealous.2:0 "祈祷主会给予指引"
-
+  report_dragon.0001.tooltip.zealous.1:0 "虔诚的[target_courtier.GetTitledFirstName]将动身去检查可能出现的神迹"
+  report_dragon.0001.tooltip.zealous.2:0 "哦，无人可派"
   report_dragon.0001.tooltip.brave.1:0 "派出勇武的的[target_courtier.GetTitledFirstName]去看看"
-  report_dragon.0001.tooltip.brave.2:0 "我的宫廷里全是废物……"
-
+  report_dragon.0001.tooltip.brave.2:0 "无人可派，我的宫廷里全是废物……"
   report_dragon.0001.tooltip.diligent:0 "[target_courtier.GetTitledFirstName]将动身前去探查"
-  report_dragon.0001.tooltip.d_1:0 "忠诚的[target_courtier.GetTitledFirstName]将代我看看是不是真的有什么东西出现"
-  report_dragon.0001.tooltip.d_2:0 "[target_courtier.GetTitledFirstName]将代我看看是不是真的有什么东西出现"
+  report_dragon.0001.tooltip.honest:0 "[target_courtier.GetTitledFirstName]将代我看看是不是真的有什么东西出现"
 
-  report_dragon.0001.flavor.sadistic.1:0 "派出一个不满你统治的人去看看"
-  report_dragon.0001.flavor.sadistic.2:0 "派一个人去看看"
-
+  report_dragon.0001.flavor.sadistic:0 "叫醒一个人去看看"
+  report_dragon.0001.flavor.zealous:0 "派出一个虔诚的人去看看"
   report_dragon.0001.flavor.diligent:0 "派出一个精明的人看看"
-
-  report_dragon.0001.flavor.zealous.1:0 "派出一个虔诚的人去看看"
-  report_dragon.0001.flavor.zealous.2:0 "在城堡内祈祷指引"
-
-  report_dragon.0001.flavor.brave.1:0 "派出一个勇武的人看看"
-  report_dragon.0001.flavor.brave.2:0 "宫廷内无人可派出"
-
-  report_dragon.0001.flavor.d_1:0 "派出一个忠诚的人去看看"
-  report_dragon.0001.flavor.d_2:0 "派一个人去看看"
+  report_dragon.0001.flavor.brave:0 "派一个人去看看"
+  report_dragon.0001.flavor.honest:0 "派一个人去看看"
 
 
   report_dragon.0002.t:0 "惊险巨龙！"
