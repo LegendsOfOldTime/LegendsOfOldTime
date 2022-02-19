@@ -58,9 +58,9 @@ report_dragon.0001 = {
             limit = {
                 report_dragon_has_mountains = yes
             }
-            alternative_limit = {
-                report_dragon_has_mountains = yes
-            }
+#            alternative_limit = {
+#                report_dragon_has_mountains = yes
+#            }
             county = {
                 save_scope_as = develop_county
             }
@@ -114,10 +114,11 @@ report_dragon.0001 = {
         stress_impact = {
             sadistic = minor_stress_impact_loss
         }
-        # todo get a not honest
+        # get courtier who hate ROOT
         random_courtier = {
            limit = {
                is_available_ai_adult = yes
+               is_female = no
                NOT = {
                     is_spouse_of = ROOT
                }
@@ -129,18 +130,10 @@ report_dragon.0001 = {
            save_scope_as = target_courtier
         }
 
-
         if = {
             limit = {
-                # is there any loyalty courtier
-               exists = scope:target_courtier
-               NOT = {
-                    is_spouse_of = ROOT
-               }
+                NOT = {exists = scope:target_courtier}
             }
-            custom_tooltip = report_dragon.0001.tooltip.a
-        }
-        else = {
             random_courtier = {
                 limit = {
                     is_available_ai_adult = yes
@@ -150,39 +143,50 @@ report_dragon.0001 = {
                 }
                 save_scope_as = target_courtier
             }
-            save_temporary_scope_as = use_random_courtier_without_opinion
-
-            custom_tooltip = report_dragon.0001.tooltip.a
         }
+        custom_tooltip = report_dragon.0001.tooltip.sadistic
+        # todo remove all judge about flavor
+#        flavor = {
+#            triggered_desc = {
+#                trigger = {
+#                    scope:target_courtier = {
+#                        opinion = {
+#                            target = ROOT
+#                            value <= 90
+#                        }
+#                    }
+#                }
+#                desc = report_dragon.0001.flavor.sadistic.1
+#            }
+#            triggered_desc = {
+#                trigger = {
+#                    exists = scope:target_courtier
+#                    NOT = {
+#                        scope:target_courtier = {
+#                            opinion = {
+#                                target = ROOT
+#                                value <= 90
+#                            }
+#                        }
+#                    }
+#                }
+#                desc = report_dragon.0001.flavor.sadistic.2
+#            }
+#        }
 
-        flavor = {
-            first_valid = {
-                triggered_desc = {
-                    trigger = {
-                        exists = scope:use_random_courtier_without_opinion
-                    }
-                    desc = "派出一个人去看看。"
-                }
-                desc = "派出一个不满你统治的人去看看。"
+        scope:target_courtier = {
+            add_opinion = {
+                target = ROOT
+                modifier = resentment_liege_opinion
+                opinion = medium_prestige_coefficient_negative
             }
         }
-
-        add_opinion = {
-            target = scope:target_courtier
-            modifier = disappointed_opinion
-            opinion = -10
-        }
-
 
         # searching effect
         trigger_event = {
             id = report_dragon.0002
+            days = { 10 20 }
         }
-        trait = sadistic
-    }
-
-    after = {
-        remove_variable = normal_courtier
     }
 
     option = {
@@ -202,7 +206,7 @@ report_dragon.0001 = {
             craven = miniscule_stress_impact_gain
         }
 
-        IF = {
+        if = {
             limit = {
                 exists = ROOT.primary_spouse
             }
@@ -226,6 +230,10 @@ report_dragon.0001 = {
                 }
             }
         }
+        add_prestige = {
+            value = prestige_level
+            multiply = medium_prestige_coefficient_negative
+        }
 
     }
     option = {
@@ -239,24 +247,52 @@ report_dragon.0001 = {
         ordered_courtier = {
             limit = {
                 is_available_ai_adult = yes
+                NOT = {
+                    is_spouse_of = ROOT
+                }
+                NOR = {
+                   has_trait = cynical
+                }
             }
-            order_by = learning
-            max = 1
+            order_by = piety_level
             save_scope_as = target_courtier
         }
-        trait = humble
-        trait = zealous
 
-        add_piety = 50
+        if = {
+            limit = {
+                exists = scope:target_courtier
+            }
+            scope:target_courtier = {
+                add_piety = {
+                    value = piety_level
+                    multiply = medium_piety_coefficient_positive
+                }
+            }
 
-        # todo flavor
-        flavor = "派出一个虔诚的人。"
-        # todo custom_tooltip
-        custom_tooltip = report_dragon.0001.tooltip.b
-        has_trait = diligent
-        has_trait = ambitious
+            custom_tooltip = report_dragon.0001.tooltip.zealous.1
+        }else = {
+            custom_tooltip = report_dragon.0001.tooltip.zealous.2
+        }
 
-        add_prestige = 40
+        flavor = {
+            triggered_desc = {
+                trigger = {
+                    NOT = { exists =  scope:target_courtier}
+                }
+                desc = report_dragon.0001.flavor.zealous.2
+            }
+            triggered_desc = {
+                trigger = {
+                    exists =  scope:target_courtier
+                }
+                desc = report_dragon.0001.flavor.zealous.1
+            }
+        }
+
+        add_piety = {
+            value = piety_level
+            multiply = medium_prestige_coefficient_positive
+        }
 
         # searching effect
         trigger_event = {
@@ -281,22 +317,19 @@ report_dragon.0001 = {
             }
             save_scope_as = target_courtier
         }
-        # todo flavor
-        flavor = "派出一个精明的人去看看。"
-        # todo custom_tooltip
-        custom_tooltip = report_dragon.0001.tooltip.c
-        has_trait = diligent
-        has_trait = ambitious
+        flavor = report_dragon.0001.flavor.diligent
+        custom_tooltip = report_dragon.0001.tooltip.diligent
 
-        add_prestige = 40
+        add_prestige = {
+            value = prestige_level
+            multiply = medium_prestige_coefficient_positive
+        }
 
         # searching effect
         trigger_event = {
             id = report_dragon.0002
             days = {10 20}
         }
-
-        # todo learn grammar from  `hold_court.6200`
 
     }
     option = {
@@ -308,8 +341,6 @@ report_dragon.0001 = {
                 has_trait = cynical
             }
         }
-        has_trait = arrogant
-        has_trait = cynical
     }
 
     option = {
@@ -322,9 +353,6 @@ report_dragon.0001 = {
                 has_trait = impatient
             }
         }
-        has_trait = content
-        has_trait = lazy
-        has_trait = impatient
         # make sure root has spouse
         IF = {
             limit = {
@@ -353,6 +381,10 @@ report_dragon.0001 = {
                     }
                 }
             }
+        }
+        add_prestige = {
+            value = prestige_level
+            multiply = small_prestige_coefficient_negative
         }
     }
     option = {
@@ -391,24 +423,7 @@ report_dragon.0001 = {
                 save_scope_as = target_courtier
             }
         }
-
-        if = {
-            limit = {
-                scope:target_courtier = {
-                    opinion = {
-                        target = ROOT
-                        value >= 50
-                    }
-                }
-            }
-            custom_tooltip = report_dragon.0001.tooltip.d_1
-        }else = {
-            set_variable = {
-                name = normal_courtier
-                value = yes
-            }
-            custom_tooltip = report_dragon.0001.tooltip.d_2
-        }
+        custom_tooltip = report_dragon.0001.tooltip.d_2
 
         if = {
             limit = {
@@ -444,13 +459,13 @@ report_dragon.0001 = {
         flavor = {
             triggered_desc = {
                 trigger = {
-                    NOT = { exists =  var:normal_courtier}
+                    scope:target_courtier = {judge_character_opinion_less_or_equal = {CHARACTER_TARGET = ROOT CRITICAL = 50 } }
                 }
                 desc = report_dragon.0001.flavor.d_1
             }
             triggered_desc = {
                 trigger = {
-                    exists =  var:normal_courtier
+                    NOT = { scope:target_courtier = {judge_character_opinion_less_or_equal = { CHARACTER_TARGET = ROOT CRITICAL = 50 }}}
                 }
                 desc = report_dragon.0001.flavor.d_2
             }
@@ -511,12 +526,84 @@ report_dragon.0001 = {
         trigger = {
             has_trait = brave
         }
-        has_trait = brave
-        ROOT.primary_spouse = {
-            add_opinion = {
-                target = ROOT
-                modifier = trusting_spouse_opinion
-                opinion = 30
+        if = {
+            limit = {
+                exists = ROOT.primary_spouse
+            }
+
+            ROOT.primary_spouse = {
+                add_opinion = {
+                    target = ROOT
+                    modifier = trusting_spouse_opinion
+                    opinion = 30
+                }
+            }
+        }
+
+        ordered_courtier = {
+            limit = {
+                is_available_ai_adult = yes
+                is_female = no
+#                prowess>= decent_skill_rating
+                prowess>= 30
+                NOT = {
+                    is_spouse_of = ROOT
+                }
+                NOR = {
+                   has_trait = craven
+                }
+            }
+            order_by = prowess
+            save_scope_as = target_courtier
+        }
+
+        if = {
+            limit = {
+                exists = scope:target_courtier
+            }
+            scope:target_courtier = {
+                add_prestige = {
+                    value = prestige
+                    multiply = medium_piety_coefficient_positive
+                }
+                add_opinion = {
+                    target = ROOT
+                    modifier = thank_liege_opinion
+                    opinion = 20
+                }
+            }
+
+            add_prestige = {
+                value = prestige_level
+                multiply = medium_prestige_coefficient_positive
+            }
+            custom_tooltip = report_dragon.0001.tooltip.brave.1
+        }else = {
+            stress_impact = {
+                # there are not any brave courtier.
+                brave = miniscule_stress_impact_gain
+            }
+
+            add_prestige = {
+                value = prestige_level
+                multiply = medium_prestige_coefficient_negative
+            }
+
+            custom_tooltip = report_dragon.0001.tooltip.brave.2
+        }
+
+        flavor = {
+            triggered_desc = {
+                trigger = {
+                    NOT = { exists =  scope:target_courtier}
+                }
+                desc = report_dragon.0001.flavor.brave.2
+            }
+            triggered_desc = {
+                trigger = {
+                    exists =  scope:target_courtier
+                }
+                desc = report_dragon.0001.flavor.brave.1
             }
         }
     }
@@ -529,7 +616,6 @@ report_dragon.0001 = {
                 has_trait = honest
                 has_trait = patient
                 has_trait = shy
-                has_trait = honest
                 has_trait = stubborn
                 has_trait = humble
                 has_trait = zealous
