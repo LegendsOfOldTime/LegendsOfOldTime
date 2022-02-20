@@ -52,6 +52,13 @@ report_dragon.0001 = {
         }
         # TODO  check every province
     }
+    after = {
+        # searching effect
+        trigger_event = {
+            id = report_dragon.0002
+            days = {5 15}
+        }
+    }
 
     immediate = {
         random_realm_province = {
@@ -151,12 +158,10 @@ report_dragon.0001 = {
                 modifier = resentment_liege_opinion
                 opinion = medium_prestige_coefficient_negative
             }
-        }
-
-        # searching effect
-        trigger_event = {
-            id = report_dragon.0002
-            days = { 10 20 }
+            add_character_flag = {
+                flag = planning_an_activity
+                days = 30
+            }
         }
     }
 
@@ -251,13 +256,12 @@ report_dragon.0001 = {
             value = piety_level
             multiply = medium_prestige_coefficient_positive
         }
-
-        # searching effect
-        trigger_event = {
-            id = report_dragon.0002
-            days = {5 15}
+        scope:target_courtier = {
+            add_character_flag = {
+                flag = planning_an_activity
+                days = 30
+            }
         }
-
     }
 
     option = {
@@ -303,13 +307,12 @@ report_dragon.0001 = {
             value = prestige_level
             multiply = medium_prestige_coefficient_positive
         }
-
-        # searching effect
-        trigger_event = {
-            id = report_dragon.0002
-            days = {5 15}
+        scope:target_courtier = {
+            add_character_flag = {
+                flag = planning_an_activity
+                days = 30
+            }
         }
-
     }
     option = {
         # arrogant or cynical
@@ -436,13 +439,12 @@ report_dragon.0001 = {
         }
 
         flavor = report_dragon.0001.flavor.honest
-
-        # searching effect
-        trigger_event = {
-            id = report_dragon.0002
-            days = {5 15}
+        scope:target_courtier = {
+            add_character_flag = {
+                flag = planning_an_activity
+                days = 30
+            }
         }
-
     }
 
     option = {
@@ -591,17 +593,120 @@ report_dragon.0001 = {
 report_dragon.0002 = {
 
     title = report_dragon.0002.t
-    desc = report_dragon.0002.d
+    desc = {
+        triggered_desc = {
+            trigger = {
+                AND = {
+                    exists = scope::target_courtier
+                    scope::target_courtier = {
+                        is_alive = yes
+                        judge_character_opinion_less_or_equal = {$TARGET$ = ROOT CRITICAL = 0}
+                    }
+                }
+            }
+            desc = report_dragon.0002.d.infidelity
+        }
+        triggered_desc = {
+            trigger = {
+                AND = {
+                    exists = scope::target_courtier
+                    scope::target_courtier = {
+                        is_alive = yes
+                        judge_character_opinion_greater_or_equal = {$TARGET$ = ROOT CRITICAL = 0}
+                    }
+                }
+            }
+            desc = report_dragon.0002.d.loyal
+        }
+        triggered_desc = {
+            trigger = {
+                    OR = {
+                        NOT = {exists = scope::target_courtier}
+                        trigger = {
+                            scope::target_courtier = {
+                                is_alive = no
+                            }
+                        }
+                    }
+            }
+            desc = report_dragon.0002.d.normal
+        }
+        triggered_desc = {
+            trigger = {
+                AND = {
+                    exists = scope::target_courtier
+                    scope::target_courtier = {
+                        is_alive = no
+                    }
+                }
+            }
+            desc = report_dragon.0002.d.death
+        }
+    }
+    immediate = {
+        if  = {
+            limit = {
+                scope:target_courtier = {
+                    is_alive = true
+                }
+
+            }
+            scope:target_courtier = {
+                remove_character_flag = planning_an_activity
+            }
+        }
+    }
+
     theme = rival_relation
     background = council_chamber
 
     right_portrait = {
         character = ROOT
+        triggered_animation = {
+            trigger = {
+                OR = {
+                    has_trait = brave
+                    has_trait = ambitious
+                    has_trait = wrathful
+                }
+            }
+            animation = anger
+        }
+        triggered_animation = {
+            trigger = {
+                OR = {
+                    has_trait = zealous
+                    has_trait = humble
+                    has_trait = gregarious
+                    has_trait = compassionate
+                }
+            }
+            animation = worry
+        }
+        triggered_animation = {
+            trigger = {
+                OR = {
+                    has_trait = craven
+                    has_trait = content
+                }
+            }
+            animation = fear
+        }
         animation = shock
     }
 
     left_portrait = {
         character = scope:target_courtier
+        triggered_animation = {
+            trigger = {
+                OR = {
+                    has_trait = brave
+                    has_trait = ambitious
+                    has_trait = wrathful
+                }
+            }
+            animation = shock
+        }
         animation = fear
     }
 

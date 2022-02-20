@@ -1,0 +1,13 @@
+﻿# higher priority value is selected first ( 2 is selected over 1 )
+
+### KILL BY DRAGON  ###
+#
+#death_dragon = {
+#	natural = no
+#	natural_death_trigger = {
+#		has_trait = wounded_1
+#	}
+#	priority = 37
+#	icon = "death_disease.dds"
+#}
+

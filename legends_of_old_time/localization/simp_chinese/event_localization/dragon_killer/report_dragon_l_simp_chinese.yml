@@ -48,7 +48,10 @@ l_simp_chinese:
 
 
   report_dragon.0002.t:0 "惊险巨龙！"
-  report_dragon.0002.d:0 "“我尊敬的[target_courtier.Custom2('RelationToMe', ROOT.Char)]……\n\n在[develop_county.GetNameNoTier]好像发现一条巨龙，村民们，村庄遭到了它的袭击，它掠走了牲畜，焚毁了村庄”"
+  report_dragon.0002.d.infidelity:0 "“[target_courtier.Custom2('RelationToMe', ROOT.Char)]……\n在[develop_county.GetNameNoTier]好像发现一条巨龙，村民们，村庄遭到了它的袭击，它掠走了牲畜，焚毁了村庄”"
+  report_dragon.0002.d.loyal:0 "“我尊敬的[target_courtier.Custom2('RelationToMe', ROOT.Char)]……\n在[develop_county.GetNameNoTier]好像发现一条巨龙，村民们，村庄遭到了它的袭击，它掠走了牲畜，焚毁了村庄”"
+  report_dragon.0002.d.normal:0 "几个衣衫褴的村民慌慌张张的被卫兵带到了宫廷内。\n“在[develop_county.GetNameNoTier]出现了一条龙，大人。我们……村庄还有畜生遭到了它的袭击，它吃掉了牛羊，烧了我们的村子……”打头的的男人带头跪在了宝座前。\n宫廷内爆发出一阵惊呼。人们交头接耳不知所措。"
+  report_dragon.0002.d.death:0 "\n而我派出去的[target_courtier.GetTitledFirstName]则[target_courtier.GetDeathReason]……"
 
   # craven
   report_dragon.0002.option.craven:0 "哦不，怎么会有这么恐怖的事情！"
