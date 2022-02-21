@@ -1,0 +1,68 @@
+﻿#The culture of the people both high and low is veering towards Celtic - embrace it?
+loot_kill_dragon_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_destiny_goal.dds"
+	major = yes
+
+	ai_check_interval = 120
+
+	desc = loot_kill_dragon_decision_desc
+
+	is_shown = {
+		exists = global_var:ready_to_killer_dragon
+
+		is_ai = no
+		any_sub_realm_county = {
+			modifier = destroy_by_dragon_modifier
+		}
+	}
+
+	is_valid = {
+		is_ai = no
+
+        custom_description = {
+            text = "loot_kill_dragon_decision_dbdm"
+            any_realm_county = {
+                has_county_modifier = destroy_by_dragon_modifier
+            }
+        }
+
+		# You can have no more than 1 powerful vassal with the "wrong" culture
+#		custom_description = {
+#			text = "asdasdasd"
+#		}
+	}
+
+	is_valid_showing_failures_only = {
+		is_ai = no
+	}
+
+#	effect = {
+#		add_to_global_variable_list = {
+#			name = unavailable_unique_decisions
+#			target = flag:reclaim_britannia_decision
+#		}
+#		show_as_tooltip = {
+#			reclaim_britannia_decision_effect = yes
+#		}
+#		trigger_event = british_isles.0001
+#		# Send event to other players
+#		every_player = {
+#			limit = {
+#				NOT = { this = root }
+#				OR = {
+#					culture = { has_cultural_pillar = heritage_west_germanic }
+#					culture = { has_cultural_pillar = heritage_goidelic }
+#					culture = { has_cultural_pillar = heritage_brythonic }
+#					has_culture = culture:norman
+#				}
+#			}
+#			trigger_event = british_isles.0002
+#		}
+#	}
+	ai_potential = {
+		always = no
+	}
+	ai_will_do = {
+		base = 0
+	}
+}

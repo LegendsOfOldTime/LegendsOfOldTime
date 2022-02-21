@@ -714,9 +714,9 @@ report_dragon.0002 = {
         global_var:begin_county = {
             save_scope_as = develop_county
         }
-        scope:develop_county = {
-            remove_county_modifier = destroy_by_dragon_modifier
-        }
+#        scope:develop_county = {
+#            remove_county_modifier = destroy_by_dragon_modifier
+#        }
     }
 
     option = {

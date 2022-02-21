@@ -1,0 +1,5 @@
+﻿## utf-8-bom
+l_simp_chinese:
+  loot_kill_dragon_decision:0 "屠龙"
+  loot_kill_dragon_decision_desc:0 "我的臣民在等待我拯救，该对肆虐国土的怪兽宣战了。"
+  loot_kill_dragon_decision_dbdm:0 "国土内任意[county|E]存在修正:#V $destroy_by_dragon_modifier$#"
