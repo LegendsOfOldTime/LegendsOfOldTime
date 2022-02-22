@@ -1,5 +1,10 @@
 ﻿## utf-8-bom
 l_simp_chinese:
   loot_kill_dragon_decision:0 "屠龙"
+  # todo 这里看下如何在翻译中获取全局变量
   loot_kill_dragon_decision_desc:0 "我的臣民在等待我拯救，该对肆虐国土的怪兽宣战了。"
+  loot_kill_dragon_decision_confirm:0 "开始进行屠龙的准备"
+  loot_kill_dragon_decision_tooltip:0 "做好准备"
   loot_kill_dragon_decision_dbdm:0 "国土内任意[county|E]存在修正:#V $destroy_by_dragon_modifier$#"
+  loot_kill_dragon_decision_effct_custom_tooltip:0 "开始进行屠龙的准备工作"
+#  loot_kill_dragon_decision_ptkdm:0 "你没有修正修正:#V $proper_to_kill_dragon_modifier$#"

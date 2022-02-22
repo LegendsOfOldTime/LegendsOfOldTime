@@ -1,6 +1,6 @@
 ﻿#The culture of the people both high and low is veering towards Celtic - embrace it?
 loot_kill_dragon_decision = {
-	picture = "gfx/interface/illustrations/decisions/decision_destiny_goal.dds"
+	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
 	major = yes
 
 	ai_check_interval = 120
@@ -11,14 +11,52 @@ loot_kill_dragon_decision = {
 		exists = global_var:ready_to_killer_dragon
 
 		is_ai = no
-		any_sub_realm_county = {
-			modifier = destroy_by_dragon_modifier
-		}
+        any_realm_county = {
+            has_county_modifier = destroy_by_dragon_modifier
+        }
 	}
 
-	is_valid = {
-		is_ai = no
+	cooldown = { years = 5 }
 
+	effect = {
+	    custom_tooltip = loot_kill_dragon_decision_effct_custom_tooltip
+	    ROOT = {
+            add_character_modifier = {
+                modifier = proper_to_kill_dragon_modifier
+                year = 1
+            }
+#
+#            add_character_modifier = {
+#                modifier = failed_proper_to_kill_dragon_modifier
+#                year = 4
+#            }
+	    }
+	    if = {
+	        limit = {
+                ROOT = {
+                    has_character_modifier = failed_proper_to_kill_dragon_modifier
+                }
+	        }
+	        remove_character_modifier = failed_proper_to_kill_dragon_modifier
+	    }
+	}
+
+	is_valid_showing_failures_only = {
+        is_available_adult = yes
+#        trigger_if = {
+#            limit = { has_variable = pay_homage_grace } # Has not paid homage to this liege before
+#            custom_tooltip = {
+#                text = pay_homage_grace_tt
+#                NOT = { var:pay_homage_grace = liege }
+#            }
+#        }
+    }
+
+	is_valid = {
+	    ROOT = {
+            NOT = {has_character_modifier = proper_to_kill_dragon_modifier}
+
+        }
         custom_description = {
             text = "loot_kill_dragon_decision_dbdm"
             any_realm_county = {

@@ -3,3 +3,6 @@
 l_simp_chinese:
   destroy_by_dragon_modifier:0 "惊现巨龙"
   destroy_by_dragon_modifier_desc:0 "该地出现一条巨龙，它摧毁村庄，掳掠牲畜。奋起反抗它的村民或被烧死或被吃掉。惊恐的人们逃离家园。而在坚守故土的人群中流传着“贪婪的贵族变成巨龙”的谣言。"
+
+  proper_to_kill_dragon_modifier:0 "准备屠龙"
+  failed_proper_to_kill_dragon_modifier:0 "放弃屠龙的准备"

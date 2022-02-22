@@ -1,0 +1,23 @@
+﻿
+#####################
+
+
+# Dragon Modifier
+
+
+#####################
+
+
+proper_to_kill_dragon_modifier = {
+    icon = hunt_positive
+    monthly_prestige = 1
+    vassal_opinion = 15
+    courtier_and_guest_opinion = 15
+}
+
+failed_proper_to_kill_dragon_modifier = {
+    icon = hunt_negative
+    monthly_prestige = -1
+    vassal_opinion = -15
+    courtier_and_guest_opinion = -15
+}
