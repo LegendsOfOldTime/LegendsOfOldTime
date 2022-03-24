@@ -2,16 +2,22 @@
 namespace = found_dragon
 
 #####################
-
+##
 ## Found Dragon Events
-
-# 0000 found
-# 1000 plan
-
-# by will
+##
+## 0001 Found the cave.
+## 0002 Follower remind you to make a plan before enter the cave.
+## 0003 Making a plan.
+##
+## by will
 #####################
 
 
+##
+## Found the cave.
+##
+## by will
+##
 found_dragon.0001 = {
 	type = character_event
 	title = found_dragon.0001.t
@@ -20,8 +26,8 @@ found_dragon.0001 = {
 	theme = hunt_activity
 
 	right_portrait = {
-    		character = ROOT
-    		animation = war_attacker
+        character = ROOT
+        animation = war_attacker
     }
 
     #Risky treatment
@@ -29,61 +35,73 @@ found_dragon.0001 = {
         name = found_dragon.0001.option.deceitful
         trait = deceitful
         trigger = {
-        			has_trait = deceitful
-        		}
+            has_trait = deceitful
+        }
     }
 
-    option = { #Finish them!!
-    		name = found_dragon.0001.option.wrathful
-    		trigger = {
-    			OR = {
-    				has_trait = wrathful
-    			}
-    		}
-    		trait = wrathful
-
-    }
-
-    option = { #Finish them!!
-    		name = found_dragon.0001.option.sadistic
-    		trigger = {
-    			OR = {
-    				has_trait = sadistic
-    				has_trait = ambitious
-    			}
-    		}
-    		trait = sadistic
-    		trait = ambitious
-
-    }
-
-    option = { #Finish them!!
-            name = found_dragon.0001.option.brave
-            trigger = {
-                has_trait = brave
-
+    option = { 
+        name = found_dragon.0001.option.wrathful
+        trigger = {
+            OR = {
+                has_trait = wrathful
             }
-            trait = brave
+        }
+        trait = wrathful
+    }
 
+    option = { 
+        name = found_dragon.0001.option.sadistic
+        trigger = {
+            OR = {
+                has_trait = sadistic
+                has_trait = ambitious
+            }
+        }
+        trait = sadistic
+        trait = ambitious
+    }
+
+    option = { 
+        name = found_dragon.0001.option.brave
+        trigger = {
+            has_trait = brave
+        }
+        trait = brave
     }
 
     option = {
         name = found_dragon.0001.option.ambitious
         trigger = {
                     has_trait = ambitious
-
-                }
+        }
         trait = ambitious
     }
 
-    #No treatment
     option = {
-            name = found_dragon.0001.option.calm
-            trigger = {
-                 has_trait = calm
-
-            }
-            trait = calm
+        name = found_dragon.0001.option.calm
+        trigger = {
+             has_trait = calm
+        }
+        trait = calm
     }
+}
+
+##
+## Follower remind you to make a plan before enter the cave.
+## Be triggered by follower if someone has trait `clam` or ... # TODO
+##
+## by will
+##
+found_dragon.0002 = {
+}
+
+
+##
+## Make a careful plan in front of the cave.
+## Be triggered by choice of the trait `found_dragon.0001.option.calm` or  `0002`
+##
+## by will
+##
+found_dragon.0003 = {
 }
 
