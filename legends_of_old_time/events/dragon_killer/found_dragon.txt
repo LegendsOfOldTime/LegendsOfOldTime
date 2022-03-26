@@ -8,6 +8,7 @@ namespace = found_dragon
 ## 0001 Found the cave.
 ## 0002 Follower remind you to make a plan before enter the cave.
 ## 0003 Making a plan.
+## 0004 Left the cave.
 ##
 ## by will
 #####################
@@ -72,7 +73,7 @@ found_dragon.0001 = {
     option = {
         name = found_dragon.0001.option.ambitious
         trigger = {
-                    has_trait = ambitious
+            has_trait = ambitious
         }
         trait = ambitious
     }
@@ -83,6 +84,14 @@ found_dragon.0001 = {
              has_trait = calm
         }
         trait = calm
+    }
+
+    option = {
+        name = found_dragon.0001.option.craven
+        trigger = {
+             has_trait = craven
+        }
+        trait = craven
     }
 }
 
@@ -103,5 +112,35 @@ found_dragon.0002 = {
 ## by will
 ##
 found_dragon.0003 = {
+}
+
+##
+## Left the cave.
+##
+## by will
+##
+found_dragon.0004 = {
+
+    type = character_event
+    	title = found_dragon.0004.t
+    	desc = found_dragon.0004.d
+
+        theme = rival_relation
+        background = council_chamber
+
+    	right_portrait = {
+            character = ROOT
+            animation = newborn
+        }
+        left_portrait = {
+            trigger_if = {
+                limit = {
+                    is_married = yes
+                }
+            }
+            character = ROOT.primary_spouse
+            animation = disgust
+        }
+
 }
 

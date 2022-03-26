@@ -6,7 +6,15 @@ l_simp_chinese:
 
   found_dragon.0001.option.deceitful:0 "呃，或许，这可能是给你们扬名立万的机会"
   found_dragon.0001.option.wrathful:0 "冲！"
-  found_dragon.0001.option.sadistic:0 "你们进去吧"
+  found_dragon.0001.option.sadistic:0 "嘿嘿，你们进去吧"
   found_dragon.0001.option.brave:0 "进入洞穴"
-  found_dragon.0001.option.ambitious:0 "哦我们还是回去吧"
+  found_dragon.0001.option.ambitious:0 "进入洞穴"
   found_dragon.0001.option.calm:0 "仔细观察周围"
+  found_dragon.0001.option.craven:0 "这太莽撞了，我们还是回去吧"
+
+
+  found_dragon.0004.t:0 "回到宫廷"
+  found_dragon.0004.d:0 "尽管从龙穴前逃跑的行径被众人耻笑，但至少保住了性命。"
+
+  found_dragon.0001.option.1:0 "笑吧笑吧，尽情笑吧"
+  found_dragon.0001.option.2:0 "打不过龙我还打不过你们？"
